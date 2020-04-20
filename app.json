@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "version": "0.1.0",
+    "icon": "./assets/images/icon.png",
+    "name": "BidmcAtHomeRN",
+    "slug": "BidmcAtHomeRN",
+    "privacy": "unlisted",
+    "platforms": ["ios", "android", "web"],
+    "githubUrl": "https://github.com/Meiday-Health/BidmcAtHomeRN",
+    "orientation": "portrait",
+    "scheme": "myapp",
+    "primaryColor": "#183E75",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#183E75"
+    },
+    "assetBundlePatterns": ["assets/**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "permissions": []
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    }
+  }
+}
