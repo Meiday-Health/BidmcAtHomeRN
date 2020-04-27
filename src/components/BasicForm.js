@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Button } from 'react-native-elements'
-import {View } from 'react-native'
+import {View, StyleSheet, Text } from 'react-native'
 
 class BasicForm extends React.Component {
     constructor(props) {
@@ -26,20 +26,69 @@ class BasicForm extends React.Component {
 
       render() {
           return (
-                <View>
-                  <Input 
-                  label= {this.name + "\n" + this.description }
-                  errorStyle={{color: 'red'}}
-                      errorMessage='This field is required'
-                      onChange= {this.handleChange}
-                  />
-                  <Button
-                  title={'Submit'}
-                  onPress={this.handleSubmit}
-                  />
-                </View>
+          
+            <View style={styles.basicFormContainer}>
+                <View style={styles.textContainer}>
+              <Text style={styles.valueTitle}>
+                {"\n" + this.name + "\n"}
+              </Text>
+              <Text style={styles.valueDescription}>
+                  {this.description + "\n" + "\n"}
+              </Text>
+              </View>
+              <Input 
+              //TODO: add error message if submit is an empty string
+              //   errorStyle={{color: 'red'}}
+              //       errorMessage='This field is required'
+              //TODO: change the font of the placeholder
+              placeholder= "Enter a value" 
+              
+              onChange= {this.handleChange}
+              />
+              <Text>
+                  {"\n"}
+              </Text>
+              <View style={[{  }]}>
+              <Button
+              style={styles.buttonStyle}
+              title={'Submit'}
+              onPress={this.handleSubmit}
+              //TODO: Clear the input box when submitted 
+              />
+              </View>
+         </View>
+       
           )
       }
+
+      
 }
+
+const styles = StyleSheet.create({
+    valueTitle: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'rgba(30,144,255,1)',
+    },
+    valueDescription: {
+        textAlign: 'center',
+        fontSize: 14,
+    },
+    basicFormContainer: {
+        alignItems: 'center',
+        width: 200,
+        marginTop: 10,
+        marginBottom: 20,
+    },
+    textContainer: {
+        alignItems: 'center',
+        width: 200,
+        backgroundColor: 'rgba(178, 190, 195,0.5)',
+    },
+    buttonStyle: {
+        textAlign: 'center', 
+        margin: 10
+    },
+    });
 
 export default BasicForm;
