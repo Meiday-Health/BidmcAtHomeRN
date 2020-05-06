@@ -1,94 +1,141 @@
-import React from 'react'
-import { Input, Button } from 'react-native-elements'
-import {View, StyleSheet, Text } from 'react-native'
+import React from "react";
+import { Input, Button } from "react-native-elements";
+import { View, StyleSheet, Text } from "react-native";
 
 class BasicForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: ' '};
+  /**
+   * Sets the state of the value typed by the user.
+   */
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+  };
 
-        this.name = "Name";
-        this.description = "description of the name";
-        
-        
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-      }
-    
-      handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-    
-      handleSubmit(event) {
-        alert('A value was submitted: ' + this.state.value);
-        event.preventDefault();
-      }
+  /**
+   * Triggers alert when submitted with the value entered.
+   */
+  handleSubmit = (event) => {
+    alert("A value was submitted: " + this.state.value);
+    event.preventDefault();
+  };
 
-      render() {
-          return (
-          
-            <View style={styles.basicFormContainer}>
-                <View style={styles.textContainer}>
-              <Text style={styles.valueTitle}>
-                {"\n" + this.name + "\n"}
-              </Text>
-              <Text style={styles.valueDescription}>
-                  {this.description + "\n" + "\n"}
-              </Text>
-              </View>
-              <Input 
-              //TODO: add error message if submit is an empty string
+  render() {
+    return (
+      /**
+       * Display the entire form.
+       */
+      <View style={styles.basicFormContainer}>
+        <View style={styles.textContainer}>
+          <Text style={styles.valueTitle}>{this.props.name}</Text>
+          <Text style={styles.valueDescription}>{this.props.description}</Text>
+        </View>
+        <View style={styles.bottomForm}>
+          <View style={styles.placeholderStyle}>
+            <Input
+              //TODO: add error message if submit is an empty string - issue #9
               //   errorStyle={{color: 'red'}}
               //       errorMessage='This field is required'
-              //TODO: change the font of the placeholder
-              placeholder= "Enter a value" 
-              
-              onChange= {this.handleChange}
-              />
-              <Text>
-                  {"\n"}
-              </Text>
-              <View style={[{  }]}>
-              <Button
+              //TODO: change the font of the placeholder - issue #10
+              placeholder="Enter a value"
+              onChange={this.handleChange}
+            />
+          </View>
+          <View>
+            <Button
               style={styles.buttonStyle}
-              title={'Submit'}
+              title={"Submit"}
               onPress={this.handleSubmit}
-              //TODO: Clear the input box when submitted 
-              />
-              </View>
-         </View>
-       
-          )
-      }
-
-      
+              //TODO: Clear the input box when submitted - issue #6
+            />
+          </View>
+        </View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    valueTitle: {
-        textAlign: 'center',
-        fontSize: 20,
-        color: 'rgba(30,144,255,1)',
-    },
-    valueDescription: {
-        textAlign: 'center',
-        fontSize: 14,
-    },
-    basicFormContainer: {
-        alignItems: 'center',
-        width: 200,
-        marginTop: 10,
-        marginBottom: 20,
-    },
-    textContainer: {
-        alignItems: 'center',
-        width: 200,
-        backgroundColor: 'rgba(178, 190, 195,0.5)',
-    },
-    buttonStyle: {
-        textAlign: 'center', 
-        margin: 10
-    },
-    });
+  /**
+   * Specific elements composing top half of form style
+   */
+  valueTitle: {
+    textAlign: "center",
+    fontSize: 30,
+    color: "rgba(30,144,255,1)",
+    padding: 20,
+    width: "100%",
+    backgroundColor: "rgba(245, 245, 245,1)",
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+  },
+  valueDescription: {
+    textAlign: "center",
+    fontSize: 14,
+    paddingRight: 40,
+    paddingLeft: 40,
+    paddingBottom: 20,
+    width: "100%",
+  },
+
+  /**
+   * Top half of form style
+   */
+  textContainer: {
+    alignItems: "center",
+    backgroundColor: "rgba(245, 245, 245,1)",
+    //backgroundColor: "rgba(255, 0, 0,1)",
+    //margin: 20,
+    width: "100%",
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderBottomColor: "rgba(178, 190, 195,1)",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+
+  /**
+   * Specific elements composing bottom half of form style
+   */
+  buttonStyle: {
+    textAlign: "center",
+    margin: 20,
+    padding: 10,
+  },
+  placeholderStyle: {
+    textAlign: "center",
+    paddingTop: 20,
+    width: "70%",
+  },
+
+  /**
+   * Bottom half of form style
+   */
+  bottomForm: {
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    //backgroundColor: "rgba(255, 0, 0,1)",
+    width: "100%",
+    borderBottomLeftRadius: 28,
+    borderBottomRightRadius: 28,
+    // borderColor: "rgba(0, 0, 0, 0.5)",
+    // borderWidth: 20,
+  },
+
+  /**
+   *
+   * Entire form style
+   */
+  basicFormContainer: {
+    alignItems: "center",
+    margin: 20,
+    //padding: 10,
+    width: 500,
+    borderStyle: "solid",
+    borderRadius: 30,
+    borderColor: "rgba(0, 0, 0, 0.5)",
+    borderWidth: 2,
+    //backgroundColor: "rgba(255,255, 255, 0.5)",
+    position: "relative",
+    //backgroundColor: "grey",
+  },
+});
 
 export default BasicForm;
