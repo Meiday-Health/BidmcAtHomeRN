@@ -16,6 +16,7 @@ class BasicForm extends React.Component {
   handleSubmit = (event) => {
     alert("A value was submitted: " + this.state.value);
     event.preventDefault();
+    //TODO: Clear the input box when submitted - issue #8
   };
 
   render() {
@@ -44,7 +45,6 @@ class BasicForm extends React.Component {
               style={styles.buttonStyle}
               title={"Submit"}
               onPress={this.handleSubmit}
-              //TODO: Clear the input box when submitted - issue #6
             />
           </View>
         </View>
